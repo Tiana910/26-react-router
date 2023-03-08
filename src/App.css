@@ -12,6 +12,12 @@ a {
 /* .activeLink {
   color: lightsalmon;
 } */
+.courseLink {
+  font-size: 25px;
+}
+.courseLink:hover {
+  text-decoration: underline;
+}
 
 nav a {
   margin: 25px;

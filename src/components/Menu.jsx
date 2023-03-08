@@ -18,6 +18,7 @@ const Menu = () => {
       >
         About
       </NavLink>
+      <NavLink to="/courses">Courses</NavLink>
       <NavLink
         //className={({ isActive }) => (isActive ? 'activeLink' : 'link')}
         // style={({ isActive }) => (isActive ? { color: 'lightgreen' } : {})}
@@ -25,6 +26,7 @@ const Menu = () => {
       >
         Contacts
       </NavLink>
+     
     </nav>
   );
 };
