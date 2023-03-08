@@ -1,11 +1,13 @@
-import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import courses from '../data/courses';
 
+const SORT_KEYS = ['title', ' slug', 'id'];
+
 function sortCoures(courses, key) {
   const sortedCourses = [...courses];
-  if (!key) {
+  if (!key || !SORT_KEYS.includes(key)) {
     return sortedCourses;
   }
   sortedCourses.sort((a, b) => (a[key] > b[key] ? 1 : -1));
@@ -15,10 +17,19 @@ function sortCoures(courses, key) {
 const Courses = () => {
   const location = useLocation();
   const query = queryString.parse(location.search);
+  const navigate = useNavigate();
   const [sortKey, setSortKey] = useState(query.sort);
   const [sortedCourses, setSortedCourses] = useState(
     sortCoures(courses, sortKey)
+   
   );
+  useEffect(() => {
+    if (!SORT_KEYS.includes(sortKey)) {
+        navigate('.')
+        setSortKey()
+        setSortedCourses(...courses)
+    }
+  }, [sortKey, navigate]);
 
   return (
     <>
